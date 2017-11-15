@@ -40,63 +40,58 @@
 			</span>
 		</div>
 		<div>
+            {assign var=VariableParaNoMostrarCiertosCampos value=0}
 			{foreach key=BLOCK_LABEL item=BLOCK_FIELDS from=$RECORD_STRUCTURE}
-				<table class="table table-bordered marginLeftZero">
-				{if $BLOCK_FIELDS|@count gt 0}
-				<tr class="listViewActionsDiv">
-					<th colspan="4">{vtranslate($BLOCK_LABEL, $MODULE)}</th>
-				</tr>
-				<tr>
-				{assign var=COUNTER value=0}
-				{foreach key=FIELD_NAME item=FIELD_MODEL from=$BLOCK_FIELDS name=blockfields}
-					{assign var="isReferenceField" value=$FIELD_MODEL->getFieldDataType()}
-					{assign var="refrenceList" value=$FIELD_MODEL->getReferenceList()}
-					{assign var="refrenceListCount" value=count($refrenceList)}
-					{if $COUNTER eq 2}
-						</tr><tr>
-						{assign var=COUNTER value=1}
-					{else}
-						{assign var=COUNTER value=$COUNTER+1}
-					{/if}
-					<td class="fieldLabel {$WIDTHTYPE}">
-					{if {$isReferenceField} eq "reference"}
-						{if $refrenceListCount > 1}
-							<select style="width: 150px;" class="chzn-select" id="referenceModulesList">
-								<optgroup>
-									{foreach key=index item=value from=$refrenceList}
-										<option value="{$value}">{$value}</option>
-									{/foreach}
-								</optgroup>
-							</select>
-						{/if}
-						{vtranslate($FIELD_MODEL->get('label'), $MODULE)}
-					{else}
-						{vtranslate($FIELD_MODEL->get('label'), $MODULE)}
-					{/if}
-					{if $FIELD_MODEL->isMandatory() eq true} <span class="redColor">*</span> {/if}
-					</td>
-					<td class="fieldValue {$WIDTHTYPE}" {if $FIELD_MODEL->get('uitype') eq '19'} colspan="3" {assign var=COUNTER value=$COUNTER+1} {/if}>
-						{include file=$FIELD_MODEL->getUITypeModel()->getTemplateName()|@vtemplate_path:$MODULE}
-					</td>
-				{/foreach}
-				</tr>
-				{/if}
-				</table>
-                                <br>
+                {if $VariableParaNoMostrarCiertosCampos eq 0}
+                    {assign var=VariableParaNoMostrarCiertosCampos value=1}
+				    <table class="table table-bordered marginLeftZero">
+				    {if $BLOCK_FIELDS|@count gt 0}
+				    <tr class="listViewActionsDiv">
+					    <th colspan="4">{vtranslate($BLOCK_LABEL, $MODULE)}</th>
+				    </tr>
+				    <tr>
+				    {assign var=COUNTER value=0}
+				    {foreach key=FIELD_NAME item=FIELD_MODEL from=$BLOCK_FIELDS name=blockfields}
+					    {assign var="isReferenceField" value=$FIELD_MODEL->getFieldDataType()}
+					    {assign var="refrenceList" value=$FIELD_MODEL->getReferenceList()}
+					    {assign var="refrenceListCount" value=count($refrenceList)}
+					    {if $COUNTER eq 2}
+						    </tr><tr>
+						    {assign var=COUNTER value=1}
+					    {else}
+						    {assign var=COUNTER value=$COUNTER+1}
+					    {/if}
+					    <td class="fieldLabel {$WIDTHTYPE}">
+					    {if {$isReferenceField} eq "reference"}
+						    {if $refrenceListCount > 1}
+							    <select style="width: 150px;" class="chzn-select" id="referenceModulesList">
+								    <optgroup>
+									    {foreach key=index item=value from=$refrenceList}
+										    <option value="{$value}">{$value}</option>
+									    {/foreach}
+								    </optgroup>
+							    </select>
+						    {/if}
+						    {vtranslate($FIELD_MODEL->get('label'), $MODULE)}
+					    {else}
+						    {vtranslate($FIELD_MODEL->get('label'), $MODULE)}
+					    {/if}
+					    {if $FIELD_MODEL->isMandatory() eq true} <span class="redColor">*</span> {/if}
+					    </td>
+					    <td class="fieldValue {$WIDTHTYPE}" {if $FIELD_MODEL->get('uitype') eq '19'} colspan="3" {assign var=COUNTER value=$COUNTER+1} {/if}>
+						    {include file=$FIELD_MODEL->getUITypeModel()->getTemplateName()|@vtemplate_path:$MODULE}
+					    </td>
+				    {/foreach}
+				    </tr>
+				    {/if}
+				    </table>
+                                    <br>            
+              {else}
+              {/if}
 			{/foreach}
 
 			{* tag cloud starts *}
-			<table class="table table-bordered marginLeftZero">
-				<tr class="listViewActionsDiv">
-					<th colspan="4">{vtranslate('LBL_TAG_CLOUD_DISPLAY', $MODULE)}</th>
-				</tr>
-				<tr>
-					<td class="fieldLabel {$WIDTHTYPE}">{vtranslate('LBL_TAG_CLOUD', $MODULE)}</td>
-					<td class="fieldValue {$WIDTHTYPE}">
-						<label><input type="checkbox" name="tagcloudview" {if $TAG_CLOUD} checked {/if} /></label>
-					</td><td class="{$WIDTHTYPE}"></td><td class="{$WIDTHTYPE}"></td>
-				</tr>
-			</table>
+			
                         <br>
 			{* tag cloud ends *}
 

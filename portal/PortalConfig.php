@@ -17,11 +17,11 @@ global $Portal_Path;
 
 // CRM URL without out trialing /
 // Example: http://yourdomain.com/crm
-$Server_Path = "http://127.0.0.1:8080/vtigercrm";
+$Server_Path = "http://127.0.0.1:8080/sisma";
 
 // Portal URL without trialing /
 // Example: http://yourdomain.com/portal
-$Authenticate_Path = "http://127.0.0.1:8080/vtigercrm/portal";
+$Authenticate_Path = "http://127.0.0.1:8080/sisma/portal";
 
 //Give a temporary directory path which is used when we upload attachment
 $upload_dir = '/tmp';
