@@ -127,9 +127,6 @@
 				<div class="span3 marginLeftZero pull-right" id="headerLinks">
 					<span id="headerLinksBig" class="pull-right headerLinksContainer">
 						<span class="dropdown span settingIcons">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<img src="{vimage_path('theme_brush.png')}" alt="theme roller" title="{vtranslate('Theme Roller',$MODULE)}" />
-							</a>
 							<ul class="dropdown-menu themeMenuContainer">
 								<div id="themeContainer">
 									{assign var=COUNTER value=0}
