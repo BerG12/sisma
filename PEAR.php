@@ -2,7 +2,7 @@
 /**
  * PEAR, the PHP Extension and Application Repository
  *
- * PEAR class and PEAR_Error class
+ * PEAR class and PEAR_Error class h
  *
  * PHP versions 4 and 5
  *
